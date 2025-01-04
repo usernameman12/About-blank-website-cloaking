@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Redirect and Close</title>
+    <script type="text/javascript">
+        window.onload = function() {
+            // Open a new blank window
+            var newWindow = window.open('about:blank', '_blank');
+            
+            // Redirect the new window to the desired URL
+            newWindow.location.href = 'https://example.com';  // Replace with your URL
+            
+            // Close the original window after a brief delay
+            setTimeout(function() {
+                window.close();
+            }, 1000);  // Delay to allow the new window to open first
+        }
+    </script>
+</head>
+<body>
+    <h1>Website Loaded</h1>
+    <p>This page automatically opens another site in a blank window and then closes itself.</p>
+</body>
+</html>
