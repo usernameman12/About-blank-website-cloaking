@@ -7,21 +7,45 @@
     <script type="text/javascript">
         window.onload = function() {
             // Ask the user for a website URL
-            var website = prompt("Enter the website URL you want to open:", "https://example.com");
+            var website = prompt("Enter the website URL you want to open in the iframe:", "https://launcher-for-about-blank-webview.vercel.app/");
 
             // Check if the user entered a valid URL
             if (website && website.startsWith("http")) {
-                // Dynamically create an iframe element
-                var iframe = document.createElement('iframe');
+                // Open a new blank tab
+                var newTab = window.open('about:blank', '_blank');
 
-                // Set iframe attributes
-                iframe.src = website;
-                iframe.style.width = "100%";
-                iframe.style.height = "100vh";
-                iframe.style.border = "none";
+                // Write an HTML structure into the new tab
+                newTab.document.write(`
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Iframe Viewer</title>
+                        <style>
+                            body {
+                                margin: 0;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                background-color: #f0f0f0;
+                            }
+                            iframe {
+                                width: 90%;
+                                height: 90%;
+                                border: none;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe src="${website}" frameborder="0"></iframe>
+                    </body>
+                    </html>
+                `);
 
-                // Append iframe to the body
-                document.body.appendChild(iframe);
+                // Close the document stream to finish loading
+                newTab.document.close();
             } else {
                 alert("Invalid URL. Please enter a valid URL starting with http:// or https://");
             }
@@ -30,6 +54,6 @@
 </head>
 <body>
     <h1>About:Blank Launcher</h1>
-    <p>The iframe will load your chosen URL below:</p>
+    <p>Opens the user-provided URL in an iframe within a new tab set to about:blank.</p>
 </body>
 </html>
