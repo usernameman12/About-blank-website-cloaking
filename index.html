@@ -14,10 +14,8 @@
             iframe.src = url;
             win.document.body.appendChild(iframe);
 
-            // Wait 800ms before closing the window
-            setTimeout(function() {
-                window.close();
-            }, 800);
+            // Close the parent window after the iframe is loaded
+            window.close();
         };
     </script>
 </body>
