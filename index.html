@@ -13,6 +13,11 @@
             iframe.style.border = "none";
             iframe.src = url;
             win.document.body.appendChild(iframe);
+
+            // Wait 800ms before closing the window
+            setTimeout(function() {
+                window.close();
+            }, 800);
         };
     </script>
 </body>
